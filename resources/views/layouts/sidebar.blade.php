@@ -22,6 +22,14 @@
         <!-- End SEO Meta Tags Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('global-scripts.edit') }}">
+                <i class="bi bi-code-slash"></i>
+                <span>Global Scripts</span>
+            </a>
+        </li>
+        <!-- End Global Scripts Nav -->
+
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('contact.index') }}">
                 <i class="bi bi-envelope"></i>
                 <span>Enquiry Form</span>

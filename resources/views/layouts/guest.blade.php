@@ -22,6 +22,7 @@
         }
 
         $seoMeta = $seoMeta ?? ($seoKey ? \App\Models\SeoMetaTag::findActive($seoType, $seoKey) : null);
+        $globalScripts = \App\Models\GlobalScript::findCurrent();
         $metaTitle = $seoMeta?->meta_title ?: ($pageTitle ?? 'Fond Travels Clone');
         $metaDescription = $seoMeta?->meta_description ?: ($pageDescription ?? 'Explore and book flights, hotels, and holiday destinations around the world.');
         $metaKeywords = $seoMeta?->meta_keywords;
@@ -73,9 +74,16 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @if (filled($globalScripts?->header_scripts))
+        {!! $globalScripts->header_scripts !!}
+    @endif
 </head>
 
 <body>
+    @if (filled($globalScripts?->body_scripts))
+        {!! $globalScripts->body_scripts !!}
+    @endif
 
     <!-- App Container -->
     <div id="app">
@@ -512,6 +520,9 @@
             @endphp
             <script src="{{ $jsSrc }}?v={{ $jsVersion }}" defer></script>
         @endforeach
+        @if (filled($globalScripts?->footer_scripts))
+            {!! $globalScripts->footer_scripts !!}
+        @endif
 </body>
 
 </html>

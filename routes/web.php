@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GlobalScriptController;
 use App\Http\Controllers\SeoMetaController;
 
 Route::controller(WebsiteController::class)->group(function () {
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::get('seo-meta/{type}/{key}/edit', [SeoMetaController::class, 'edit'])->name('seo-meta.edit');
     Route::put('seo-meta/{type}/{key}', [SeoMetaController::class, 'update'])->name('seo-meta.update');
     Route::delete('seo-meta/{type}/{key}', [SeoMetaController::class, 'destroy'])->name('seo-meta.destroy');
+
+    Route::get('global-scripts', [GlobalScriptController::class, 'edit'])->name('global-scripts.edit');
+    Route::put('global-scripts', [GlobalScriptController::class, 'update'])->name('global-scripts.update');
 });
 
 require __DIR__.'/auth.php';
